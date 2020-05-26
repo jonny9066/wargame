@@ -3,6 +3,8 @@
 
 namespace WarGame{
     class Sniper : public Soldier{
+        private:
+            static const int initialHealth = SNIPER_HEALTH;
         protected:
             Sniper(int player, int h, int d):Soldier(player, h, d){}
             

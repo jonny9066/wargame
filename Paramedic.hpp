@@ -3,6 +3,8 @@
 #pragma once
 namespace WarGame{
     class Paramedic : public Soldier{
+        private:
+            static const int initialHealth = PARAMEDIC_HEALTH;
         protected:
             Paramedic(int player, int h, int d):Soldier(player, h, d){}
             

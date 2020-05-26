@@ -5,5 +5,5 @@ using namespace WarGame;
 
 void FootSoldier::action(Board board){ 
     Soldier* closestEnemy = board.getClosestEnemySoldier({1,2}, this->getOwner());
-    closestEnemy->receiveEffect(this->effectOnHealth());
+    closestEnemy->receiveDamage(this->getDamage());
 }

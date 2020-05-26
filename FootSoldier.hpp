@@ -4,6 +4,8 @@
 
 namespace WarGame{
     class FootSoldier : public Soldier{
+        private:
+            static const int initialHealth = FOOT_HEALTH;
         protected:
             FootSoldier(int player, int h, int d):Soldier(player, h, d){}
             
