@@ -22,10 +22,13 @@ Soldier*& Board::operator[](std::pair<int,int> location){
     if(!insideBoard(location)){
         throw std::invalid_argument("bad coordinates!");
     }
+    
     Soldier** sldr = &(board.at(location.first).at(location.second));
+    /* //impossible to delete this way
     if(*sldr != nullptr){
         throw std::invalid_argument("An occupied square cannot be modified!");
     }
+    */
     return *sldr;
 }  
 Soldier* Board::operator[](std::pair<int,int> location) const{

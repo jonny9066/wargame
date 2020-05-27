@@ -13,6 +13,8 @@
 namespace WarGame {
 	class DemoGame {
 	 private:
+	 	const int numRows = 8;
+		const int numCols = 8;
 		Board board;
 	 public:
 

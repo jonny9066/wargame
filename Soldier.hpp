@@ -16,6 +16,8 @@ namespace WarGame{
             //Type st;
             Soldier(int player, int h, int d): player(player), health(h){}
         public: 
+            // to avoid undefined behavior
+            virtual ~Soldier(){}
             int getHealth()const{return health;};
             int getOwner()const{return player;};
             int getDamage() const{return damage;}
