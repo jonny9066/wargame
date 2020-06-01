@@ -22,19 +22,22 @@ class Board {
   private:
   //a matrix of Soldier pointers
     std::vector<std::vector<Soldier*>> board;
-    // vector holding the soldiers of player1
-    std::vector<Soldier*> soldiers1;
-    // vector holding the soldiers of player2
-    std::vector<Soldier*> soldiers2;
-
     //returs true if given location is inside board
     bool insideBoard(std::pair<int,int> location) const;
+
     std::pair<int,int> getBoardSize() const{
       return {board.capacity(),board.at(0).capacity()};}
-
+    
+    //gets number of moves required to get from s1 to s2
+    int getDistance(std::pair<int,int> s1, std::pair<int,int> s2) const;
 
   public:
     enum MoveDIR { Up, Down, Right, Left };
+  private:
+    std::pair<int,int> moveToCoordinate(std::pair<int,int> loc, MoveDIR move) const;
+
+  public:
+
     //constructs a vector of vectors with null pointers to Soldier
     Board(uint numRows, uint numCols) : 
       board(numRows, std::vector<Soldier*>(numCols, nullptr)) {}
@@ -47,8 +50,13 @@ class Board {
     Soldier* operator[](std::pair<int,int> location) const;
     // returns pointer to closest enemy soldier or null pointer in there are no enemies
     Soldier* getClosestEnemySoldier(std::pair<int,int> location, int player) const;
-    
-    
+    Soldier* getHighestHPEnemySoldier(std::pair<int,int> location, int player) const;
+    std::vector<Soldier*> getAdjacentFriendlys(std::pair<int,int> location, int player)const;
+    //commands all soldiers of type ti to act (i.e. shoot or heal)
+    void commandSubordinates(const std::type_info& ti, int player);
+
+
+
     // The function "move" tries to move the soldier of player "player"
     //     from the "source" location to the "target" location,
     //     and activates the special ability of the soldier.

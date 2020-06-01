@@ -10,6 +10,7 @@
 #include "DemoGame.hpp"
 #include "FootSoldier.hpp"
 #include "FootCommander.hpp"
+#include <iostream>
 
 #include <cassert>
 
@@ -31,6 +32,7 @@ namespace WarGame {
 			//assert(board.has_soldiers(2));
 
 			// In your game, you can put more soldier types, such as the sniper and the paramedic types.
+			std::cout<<"Soldiers placed successfuly."<<std::endl;
 		}
 
 		uint DemoGame::play() {

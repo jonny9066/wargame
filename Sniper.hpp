@@ -10,7 +10,6 @@ namespace WarGame{
             
         public:
             Sniper(int player):Soldier(player, SNIPER_HEALTH, SNIPER_DAMAGE){}
-            void action(Board board);
-            //virtual bool isCommander(){return false;}
+            void action(Board* board, std::pair<int,int> loc);
     };
 }

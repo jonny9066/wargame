@@ -1,5 +1,4 @@
 #include "Soldier.hpp"
-#include "Settings.hpp"
 #pragma once
 namespace WarGame{
     class Paramedic : public Soldier{
@@ -10,6 +9,6 @@ namespace WarGame{
             
         public:
             Paramedic(int player):Soldier(player, PARAMEDIC_HEALTH, 0){}
-            virtual void action(Board board);
+            virtual void action(Board* board, std::pair<int,int> loc);
     };
 }

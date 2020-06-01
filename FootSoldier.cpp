@@ -3,7 +3,9 @@
 
 using namespace WarGame;
 
-void FootSoldier::action(Board board){ 
-    Soldier* closestEnemy = board.getClosestEnemySoldier({1,2}, this->getOwner());
-    closestEnemy->receiveDamage(this->getDamage());
+void FootSoldier::action(Board* board, std::pair<int,int> loc){ 
+    Soldier* closestEnemy = board->getClosestEnemySoldier(loc, this->getOwner());
+    if(closestEnemy != nullptr){
+        closestEnemy->receiveDamage(this->getDamage());
+    }
 }
