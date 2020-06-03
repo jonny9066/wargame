@@ -1,11 +1,13 @@
 #include "Sniper.hpp"
 #include "Board.hpp"
 
-using namespace WarGame;
 
-void Sniper::action(Board* board, std::pair<int,int> loc){ 
-    Soldier* enemy = board->getHighestHPEnemySoldier(loc, this->getOwner());
-    if(enemy != nullptr){
-        enemy->receiveDamage(this->getDamage());
+void Sniper::action(WarGame::Board* board, std::pair<int,int> loc){ 
+    std::pair<int,int> enemyLoc = board->getHighestHPEnemyLocation(loc, this->getOwner());
+    if(enemyLoc != std::pair{-1,-1}){
+        // attack enenmy and check if he was killed
+        if(  ((*board)[enemyLoc]->receiveDamage(this->getDamage()))  <=0  ){
+            (*board)[enemyLoc] = nullptr;
+        }
     }
 }

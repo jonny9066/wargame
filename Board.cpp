@@ -125,14 +125,14 @@ void Board::commandSubordinates(const std::type_info& type, int player){
 }
 
 
-Soldier* Board::getClosestEnemySoldier(std::pair<int,int> location, int player) const{
-    Soldier* closestEnemySoldier = nullptr;
+std::pair<int,int> Board::getClosestEnemyLocation(std::pair<int,int> location, int player) const{
+    std::pair<int,int> closestEnemyLocation = {-1,-1};
 
     std::pair<int,int> bSize = getBoardSize();
     Soldier* s;
     double minDist = __DBL_MAX__;
     double dist;
-    // go over whole board and save closest enemy sldier
+    // go over whole board and save closest enemy location
     for(int i = 0; i < bSize.first; i++){
         for(int j = 0; j < bSize.second; j++){
             s = (*this)[{i,j}];
@@ -140,34 +140,33 @@ Soldier* Board::getClosestEnemySoldier(std::pair<int,int> location, int player) 
                 dist = getDistance({i,j}, location);
                 if(dist<minDist){
                     minDist = dist;
-                    closestEnemySoldier = s;
+                    closestEnemyLocation = {i,j};
                 }
             }
         }
     }
-    // if no enemy soldiers found return nullptr
-    return closestEnemySoldier;
+    return closestEnemyLocation;
 }
 
-Soldier* Board::getHighestHPEnemySoldier(std::pair<int,int> location, int player) const{
-    Soldier* highestHPSoldier = nullptr;
+std::pair<int,int> Board::getHighestHPEnemyLocation(std::pair<int,int> location, int player) const{
+    std::pair<int,int> highestHPLocation = {-1,-1};
     std::pair<int,int> bSize = getBoardSize();
     Soldier* s;
     double highestHP = -1;
-    // go over whole board and save closest enemy sldier
+
     for(int i = 0; i < bSize.first; i++){
         for(int j = 0; j < bSize.second; j++){
             s = (*this)[{i,j}];
             if(s != nullptr && s->getOwner() != player){
                 if(s->getHealth() >highestHP){
                     highestHP = s->getHealth();
-                    highestHPSoldier = s;
+                    highestHPLocation = {i,j};
                 }
             }
         }
     }
     // if no enemy soldiers found return nullptr
-    return highestHPSoldier;
+    return highestHPLocation;
 
 }
 

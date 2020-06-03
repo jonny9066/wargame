@@ -49,8 +49,8 @@ class Board {
     // operator for getting soldier in given location
     Soldier* operator[](std::pair<int,int> location) const;
     // returns pointer to closest enemy soldier or null pointer in there are no enemies
-    Soldier* getClosestEnemySoldier(std::pair<int,int> location, int player) const;
-    Soldier* getHighestHPEnemySoldier(std::pair<int,int> location, int player) const;
+    std::pair<int,int> getClosestEnemyLocation(std::pair<int,int> location, int player) const;
+    std::pair<int,int> getHighestHPEnemyLocation(std::pair<int,int> location, int player) const;
     std::vector<Soldier*> getAdjacentFriendlys(std::pair<int,int> location, int player)const;
     //commands all soldiers of type ti to act (i.e. shoot or heal)
     void commandSubordinates(const std::type_info& ti, int player);

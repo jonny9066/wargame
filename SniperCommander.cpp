@@ -3,7 +3,7 @@
 
 using namespace WarGame;
 
-void SniperCommander::action(Board* board, std::pair<int,int> loc){ 
+void SniperCommander::action(WarGame::Board* board, std::pair<int,int> loc){ 
     Sniper::action(board, loc);
     board->commandSubordinates(ti, player);
 }

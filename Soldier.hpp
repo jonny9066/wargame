@@ -4,8 +4,8 @@
 #include <typeinfo>
 #pragma once
 
+// forward declaration
 namespace WarGame{
-    // forward declaration
     class Board;
     class Soldier{
         private:
@@ -24,12 +24,17 @@ namespace WarGame{
             int getDamage() const{return damage;}
 
 
-            // reduces 'damage' points from health
-            void receiveDamage(int damage){health -= damage;}
+            // reduces 'damage' points from health and returns
+            //health that remains
+            int receiveDamage(int damage){
+                health -= damage;
+                return health;
+            }
             // restores health to full
             void restoreHealth(){health = initialHealth;}
-            virtual void action(Board* board, std::pair<int,int> loc) = 0;
+            virtual void action(WarGame::Board* board, std::pair<int,int> loc) = 0;
             //Gives what difference the soldier's attack will inflict
     };
 }
+
 
